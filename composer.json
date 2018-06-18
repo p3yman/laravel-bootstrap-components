@@ -1,0 +1,28 @@
+{
+    "name": "peyman3d/laravel-bootstrap-components",
+    "description": "Bootstrap elements as components for Laravel",
+    "type": "laravel, components, view, blade, bootstrap, ui, framework",
+    "keywords": ["laravel, components, view, blade, bootstrap, ui, framework"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peyman Eskandari",
+            "email": "peyman.eskandari@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+      "psr-4": {
+        "Peyman3d\\BootstrapComponents\\": "src/"
+      }
+    },
+    "require": {},
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Peyman3d\\BootstrapComponents\\BootstrapComponentsServiceProvider"
+        ]
+      }
+    }
+}
