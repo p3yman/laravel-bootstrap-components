@@ -2,6 +2,7 @@
 
 namespace Peyman3d\BootstrapComponents;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class BootstrapComponentsServiceProvider extends ServiceProvider
@@ -20,6 +21,9 @@ class BootstrapComponentsServiceProvider extends ServiceProvider
 	    $this->publishes([
 		    __DIR__.'/resources/views' => resource_path('views/vendor/bootstrap'),
 	    ]);
+	    
+	    // Register aliases
+	    Blade::component('bootstrap::alert', 'alert');
     }
 
     /**
