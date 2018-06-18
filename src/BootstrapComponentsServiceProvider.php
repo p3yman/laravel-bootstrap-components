@@ -3,10 +3,13 @@
 namespace Peyman3d\BootstrapComponents;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class BootstrapComponentsServiceProvider extends ServiceProvider
 {
+	protected $views_dir = __DIR__.'/resources/views';
+	
     /**
      * Bootstrap services.
      *
@@ -15,24 +18,25 @@ class BootstrapComponentsServiceProvider extends ServiceProvider
     public function boot()
     {
         // Load views
-	    $this->loadViewsFrom(__DIR__.'/resources/views', 'bootstrap');
+	    $this->loadViewsFrom($this->views_dir, 'bootstrap');
 	
 	    // Publish packages
 	    $this->publishes([
-		    __DIR__.'/resources/views' => resource_path('views/vendor/bootstrap'),
+		    $this->views_dir => resource_path('views/vendor/bootstrap'),
 	    ]);
 	    
 	    // Register aliases
-	    Blade::component('bootstrap::alert', 'alert');
+	    $this->registerAliases();
     }
-
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
+    
+    public function registerAliases(){
+	
+	    $views = File::allFiles($this->views_dir);
+	    
+	    foreach ($views as $view){
+	    	$name = str_replace(".blade.php","", $view->getFilename());
+		    Blade::component("bootstrap::$name", 'b'.ucfirst($name));
+	    }
+    
     }
 }
