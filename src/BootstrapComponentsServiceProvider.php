@@ -35,7 +35,7 @@ class BootstrapComponentsServiceProvider extends ServiceProvider
 	    
 	    foreach ($views as $view){
 	    	$name = str_replace(".blade.php","", $view->getFilename());
-		    Blade::component("bootstrap::$name", 'b'.ucfirst($name));
+		    Blade::component("bootstrap::$name", 'b'.studly_case($name));
 	    }
     
     }
