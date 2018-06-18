@@ -11,5 +11,7 @@
         </button>
     @endif
 
+    <div class="alert-title">{{ $title }}</div>
+
     {{ $slot }}
 </div>
